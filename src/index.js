@@ -1,5 +1,5 @@
 require('dotenv').config();
-const {Client, IntentsBitField} = require('discord.js');
+const {Client, IntentsBitField, } = require('discord.js');
 
 const diceRoll = new Client({
     intents: [
@@ -12,6 +12,10 @@ const diceRoll = new Client({
 
 diceRoll.on('ready', (c) => {
     console.log(`😤 ${c.user.tag} is online.`)
+
+    diceRoll.user.setActivity({
+        name: "Rolling the Dice",
+    })
 });
 
 
