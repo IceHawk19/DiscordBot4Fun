@@ -14,22 +14,6 @@ diceRoll.on('ready', (c) => {
     console.log(`😤 ${c.user.tag} is online.`)
 });
 
-//diceRoll.on('messageCreate', (message) => {
-//    console.log(message.content);
-//})
-
-
-diceRoll.on('messageCreate', (message) => {
-    if(message.author.username == 'wojak3693'){
-        message.react("🖕")
-    }
-    /*
-    else if(message.author.bot == false && message.author.username != 'icehawk19'){
-        message.react("❤️");
-    }
-    */
-});
-
 
 diceRoll.on('interactionCreate', (interaction) =>{
     if(interaction.isChatInputCommand()){
