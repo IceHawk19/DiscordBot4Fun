@@ -1,5 +1,5 @@
 require('dotenv').config();
-const {Client, IntentsBitField, } = require('discord.js');
+const {Client, IntentsBitField, ActivityType} = require('discord.js');
 
 const diceRoll = new Client({
     intents: [
@@ -15,6 +15,7 @@ diceRoll.on('ready', (c) => {
 
     diceRoll.user.setActivity({
         name: "Rolling the Dice",
+        type: ActivityType.Custom,
     })
 });
 
