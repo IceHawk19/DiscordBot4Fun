@@ -2,6 +2,9 @@ const {ApplicationCommandOptionType} = require('discord.js');
 
 module.exports = {
 
+    //Defining the champinfo command
+
+    //deleted: bool,
     name:'champinfo',
     description: 'Links to runes and builds for X champ',
     options: [
@@ -11,7 +14,8 @@ module.exports = {
             type: ApplicationCommandOptionType.String,
             required: true,
         },
-    ],
+    ], //autocomplete user entries with given choices (research)
+
 
     callback: (diceRoll, interaction) => {
         var champName = interaction.options.get('champ-name').value;

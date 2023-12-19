@@ -3,7 +3,8 @@ const {ApplicationCommandOptionType} = require('discord.js');
 module.exports = {
 
     //Defining the r (Roll) command
-    //deleted: true,
+
+    //deleted: bool,
     name:'r',
     description: 'Roles an N sided die',
     options: [
@@ -23,35 +24,50 @@ module.exports = {
         diceSum = 0;
         diceMax = 0;
 
-        //Rolls all the dice
+        //Requires user input in NdN format with values within the range of 0-324
+        //Replies with an error message otherwise
         if(numDice <= 324 && numSides <= 324 && numDice > 0 && numSides > 0){
+
+            //Rolls all the dice
             for(let i = 0; i < numDice; i++){
                 diceOutputs[i] = Math.floor(Math.random() * numSides) + 1;
                 diceSum = diceSum + diceOutputs[i];
                 diceMax = diceMax + numSides;
             }
 
-            if(diceSum == numDice && numDice != 1){
-                interaction.reply('You rolled ' + numDice + 'd' + numSides + '\n' + diceOutputs.join(' + ') + ' for a total of **' + diceSum + ' womp womp**');
-            }
-            else if(diceSum == numDice){
-                interaction.reply('You rolled ' + numDice + 'd' + numSides + '\n' + '**' + diceSum + ' womp womp**');
-            }
-            else if(diceSum == diceMax && numDice != 1){
-                interaction.reply('You rolled ' + numDice + 'd' + numSides + '\n' + diceOutputs.join(' + ') + ' for a total of **' + diceSum + ' YIPEEEEEEE**');
+
+            //Maybe use string to hold message for cleaner code
+            //Dice Roll Output
+            if(diceSum == numDice){
+                if(numDice != 1){
+                    interaction.reply('You rolled ' + numDice + 'd' + numSides + '\n' + diceOutputs.join(' + ') + ' for a total of **' + diceSum + ' womp womp**');
+                }
+                else{
+                    interaction.reply('You rolled ' + numDice + 'd' + numSides + '\n' + '**' + diceSum + ' womp womp**');
+                }
             }
             else if(diceSum == diceMax){
-                interaction.reply('You rolled ' + numDice + 'd' + numSides + '\n' + '**' + diceSum + ' YIPEEEEEEE**');
-            }
-            else if(numDice != 1){
-                interaction.reply('You rolled ' + numDice + 'd' + numSides + '\n' + diceOutputs.join(' + ') + ' for a total of **' + diceSum + "**");
+                if(numDice != 1){
+                    interaction.reply('You rolled ' + numDice + 'd' + numSides + '\n' + diceOutputs.join(' + ') + ' for a total of **' + diceSum + ' YIPEEEEEEE**');
+                }
+                else{
+                    interaction.reply('You rolled ' + numDice + 'd' + numSides + '\n' + '**' + diceSum + ' YIPEEEEEEE**');
+                }
             }
             else{
-                interaction.reply('You rolled ' + numDice + 'd' + numSides + '\n' + "**" + diceSum + "**");
+                if(numDice != 1){
+                    interaction.reply('You rolled ' + numDice + 'd' + numSides + '\n' + diceOutputs.join(' + ') + ' for a total of **' + diceSum + "**");
+                }
+                else{
+                    interaction.reply('You rolled ' + numDice + 'd' + numSides + '\n' + "**" + diceSum + "**");
+                }  
             }
         }
         else{
-            interaction.reply({content:'Please use less than or equal to 324 and more than 0 dice and sides. Also make sure you are formating the entry correctly (NdX) \n Thank you.', ephemeral: true});
+            interaction.reply({
+                content:'Please use less than or equal to 324 and more than 0 dice and sides. Also make sure you are formating the entry correctly (NdX) \n Thank you.', 
+                ephemeral: true
+            });
         }
     }
 }
