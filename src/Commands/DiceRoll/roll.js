@@ -23,6 +23,7 @@ module.exports = {
         const diceOutputs = [];
         diceSum = 0;
         diceMax = 0;
+        const outputMsg = 'You rolled ' + numDice + 'd' + numSides + '\n';
 
         //Requires user input in NdN format with values within the range of 0-324
         //Replies with an error message otherwise
@@ -36,30 +37,29 @@ module.exports = {
             }
 
 
-            //Maybe use string to hold message for cleaner code
-            //Dice Roll Output
+            //Dice Roll Outputs
             if(diceSum == numDice){
                 if(numDice != 1){
-                    interaction.reply('You rolled ' + numDice + 'd' + numSides + '\n' + diceOutputs.join(' + ') + ' for a total of **' + diceSum + ' womp womp**');
+                    interaction.reply(outputMsg + diceOutputs.join(' + ') + ' for a total of **' + diceSum + ' womp womp**');
                 }
                 else{
-                    interaction.reply('You rolled ' + numDice + 'd' + numSides + '\n' + '**' + diceSum + ' womp womp**');
+                    interaction.reply(outputMsg + '**' + diceSum + ' womp womp**');
                 }
             }
             else if(diceSum == diceMax){
                 if(numDice != 1){
-                    interaction.reply('You rolled ' + numDice + 'd' + numSides + '\n' + diceOutputs.join(' + ') + ' for a total of **' + diceSum + ' YIPEEEEEEE**');
+                    interaction.reply(outputMsg + diceOutputs.join(' + ') + ' for a total of **' + diceSum + ' YIPEEEEEEE**');
                 }
                 else{
-                    interaction.reply('You rolled ' + numDice + 'd' + numSides + '\n' + '**' + diceSum + ' YIPEEEEEEE**');
+                    interaction.reply(outputMsg + '**' + diceSum + ' YIPEEEEEEE**');
                 }
             }
             else{
                 if(numDice != 1){
-                    interaction.reply('You rolled ' + numDice + 'd' + numSides + '\n' + diceOutputs.join(' + ') + ' for a total of **' + diceSum + "**");
+                    interaction.reply(outputMsg + diceOutputs.join(' + ') + ' for a total of **' + diceSum + "**");
                 }
                 else{
-                    interaction.reply('You rolled ' + numDice + 'd' + numSides + '\n' + "**" + diceSum + "**");
+                    interaction.reply(outputMsg + "**" + diceSum + "**");
                 }  
             }
         }
